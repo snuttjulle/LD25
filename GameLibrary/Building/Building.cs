@@ -68,7 +68,9 @@ namespace GameLibrary.Building
             _persons = new Person[persons];
 
             for (int i = 0; i < _persons.Length; i++)
+            {
                 _persons[i] = new Person(game, this, stressMultiplier);
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -84,7 +86,9 @@ namespace GameLibrary.Building
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (Floor floor in _floors)
+            {
                 floor.Draw(gameTime, spriteBatch);
+            }
 
             _elevator.Draw(gameTime, spriteBatch);
 
@@ -92,7 +96,9 @@ namespace GameLibrary.Building
             DrawBuildingBorders(spriteBatch);
 
             foreach (Person person in _persons)
+            {
                 person.Draw(gameTime, spriteBatch);
+            }
         }
 
         public Vector2 GetRoomPosition(Point room)
@@ -117,7 +123,9 @@ namespace GameLibrary.Building
             for (int i = 0; i < Floors - 1; i++)
             {
                 if (i != 0)
+                {
                     dest.Y -= ROOM_SIZE + FLOOR_MARGIN;
+                }
                 spriteBatch.Draw(_primitiveTexture, dest, new Color(130, 130, 130));
             }
         }
@@ -138,13 +146,19 @@ namespace GameLibrary.Building
                 {
                     destinationRectangle.Y += FLOOR_MARGIN;
                 }
-
+                //You can use switch case here
                 if (i > 0 && i < Rooms)
+                {
                     spriteBatch.Draw(_roofTexture, destinationRectangle, middleSource, Color.White);
+                }
                 else if (i == 0)
+                {
                     spriteBatch.Draw(_roofTexture, destinationRectangle, leftSource, Color.White);
+                }
                 else
+                {
                     spriteBatch.Draw(_roofTexture, destinationRectangle, rightSource, Color.White);
+                }
 
                 destinationRectangle.X += ROOM_SIZE;
             }
@@ -174,7 +188,9 @@ namespace GameLibrary.Building
             _roofTexture = _game.Content.Load<Texture2D>("Sprites\\roof");
 
             foreach (Floor floor in _floors)
+            {
                 floor.LoadContent();
+            }
 
             _elevator.LoadContent();
 
@@ -185,7 +201,9 @@ namespace GameLibrary.Building
             }
 
             foreach (Person person in _persons)
+            {
                 person.LoadContent();
+            }
         }
     }
 }
